@@ -10,12 +10,10 @@ namespace EVisa.BI.Services.Concrete
     public class CountryService : ICountryService
     {
         private readonly ICountryRepository _countryRepository;
-        private readonly IMapper _mapper;
 
-        public CountryService(ICountryRepository countryRepository, IMapper mapper)
+        public CountryService(ICountryRepository countryRepository)
         {
             _countryRepository = countryRepository;
-            _mapper = mapper;
         }
 
         public Task<CountryCreateResponseDto> Create(CountryCreateResponseDto model)
