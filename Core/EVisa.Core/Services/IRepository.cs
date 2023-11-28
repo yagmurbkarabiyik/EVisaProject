@@ -8,9 +8,10 @@ namespace EVisa.Core.Services
 {
     public interface IRepository<T> where T : class
     {
-        void InsertAsync(T entity);
+        Task InsertAsync(T entity);
         void UpdateAsync(T entity);
         void DeleteAsync(T entity);
         IQueryable<T> GetAll();
+        void SaveChangesAsync();
     }
 }

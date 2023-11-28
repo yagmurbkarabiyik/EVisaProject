@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVisa.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,7 @@ namespace EVisa.Entities.Models
         public string Type { get; set; }
         public ICollection<ApplicationType> ApplicationType { get; set; }
         public ICollection<Destination> Destinations { get; set; }
-    }
+
+		
+	}
 }

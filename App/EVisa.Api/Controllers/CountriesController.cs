@@ -1,6 +1,9 @@
 ﻿using EVisa.BI.Services.Abstract;
-using Microsoft.AspNetCore.Http;
+using EVisa.Dal.Data.IDalRepos;
+using EVisa.Dtos.CountryDtos;
+using EVisa.Entities.Models;
 using Microsoft.AspNetCore.Mvc;
+using static EVisa.Dtos.CountryDtos.CountryResponseDtos;
 
 namespace EVisa.Api.Controllers
 {
@@ -9,18 +12,39 @@ namespace EVisa.Api.Controllers
     public class CountriesController : ControllerBase
     {
         private readonly ICountryService _countryService;
+        private readonly ICountryRepository _coutryRepository;
 
-        public CountriesController(ICountryService countryService)
-        {
-            _countryService = countryService;
-        }
+		public CountriesController(ICountryService countryService, ICountryRepository coutryRepository)
+		{
+			_countryService = countryService;
+			_coutryRepository = coutryRepository;
+		}
 
-        [HttpGet]
+		[HttpGet]
         public async Task<IActionResult> GetCountry()
         {
             var country = await _countryService.GetAll();
             return Ok(country);
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Insert(CountryCreateRequestDtos model)
+		{
+			var createdCountry = await _countryService.Create(model);
+
+           _coutryRepository.SaveChangesAsync();
+
+            return Ok(model);
+
+		}
+        [HttpPut]
+        public async Task<IActionResult> Update(CountryUpdateRequestDtos model) 
+        {
+            var updatedCountry = await _countryService.Update(model);
+            _coutryRepository.SaveChangesAsync();
+            return Ok(model);
+        }
+
     }
 }

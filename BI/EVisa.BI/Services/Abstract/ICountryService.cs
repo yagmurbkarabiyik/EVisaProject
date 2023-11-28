@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVisa.Dtos.CountryDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace EVisa.BI.Services.Abstract
 {
     public interface ICountryService
     {
-        Task<CountryCreateResponseDto> Create(CountryCreateResponseDto model);
-        Task<CountryUpdateResponseDto> Update(CountryUpdateResponseDto model);
+        Task<CountryCreateResponseDto> Create(CountryCreateRequestDtos model);
+        Task<CountryUpdateResponseDto> Update(CountryUpdateRequestDtos model);
         Task<List<CountryGetResponseDto>> GetAll();
     }
 }

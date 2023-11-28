@@ -20,9 +20,9 @@ namespace EVisa.Dtos.DestinationDtos
         public string CountryId { get; set; } = null!;
     }
 
-    public class CompanyCreateRequestValidator : AbstractValidator<DestinationCreateRequestDtos>
+    public class CountryCreateRequestValidator : AbstractValidator<DestinationCreateRequestDtos>
     {
-        public CompanyCreateRequestValidator()
+        public CountryCreateRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Bu alan gereklidir")
@@ -49,9 +49,9 @@ namespace EVisa.Dtos.DestinationDtos
         public string CountryId { get; set; } = null!;
     }
 
-    public class CompanyUpdateRequestValidator : AbstractValidator<DestinationUpdateRequestDtos>
+    public class CountryUpdateRequestValidator : AbstractValidator<DestinationUpdateRequestDtos>
     {
-        public CompanyUpdateRequestValidator()
+        public CountryUpdateRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Bu alan gereklidir")

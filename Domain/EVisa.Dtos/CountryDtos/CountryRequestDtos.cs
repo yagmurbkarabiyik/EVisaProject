@@ -1,10 +1,6 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace EVisa.Dtos.CountryDtos
 {
@@ -12,25 +8,37 @@ namespace EVisa.Dtos.CountryDtos
     {
         [DisplayName("Ülke Adı *")]
         public string Name { get; set; } = null!;
+		[DisplayName("Tür Adı *")]
+		public string Type { get; set; } = null!;
+		[DisplayName("Durum *")]
+		public string Status { get; set; } = null!;
 
-        [DisplayName("Başvuru Türü*")]
-        public string ApplicationType { get; set; } = null!;
-    }
+		//[DisplayName("Başvuru Türü*")]
+		//public string ApplicationType { get; set; } = null!;
+	}
 
-    public class CompanyCreateRequestValidator : AbstractValidator<CountryCreateRequestDtos>
+    public class CountryCreateRequestValidator : AbstractValidator<CountryCreateRequestDtos>
     {
-        public CompanyCreateRequestValidator()
+        public CountryCreateRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Bu alan gereklidir")
                 .NotEmpty().WithMessage("Bu alan gereklidir")
                 .WithName("Ülke Adı");
-            RuleFor(x => x.ApplicationType)
-                .NotNull().WithMessage("Bu alan gereklidir")
-                .NotEmpty().WithMessage("Bu alan gereklidir")
-                .WithName("Başvuru Türü");
+			RuleFor(x => x.Type)
+			  .NotNull().WithMessage("Bu alan gereklidir")
+			  .NotEmpty().WithMessage("Bu alan gereklidir")
+			  .WithName("Tür Adı");
+			RuleFor(x => x.Status)
+	          .NotNull().WithMessage("Bu alan gereklidir")
+	          .NotEmpty().WithMessage("Bu alan gereklidir")
+	          .WithName("Durum ");
+			//RuleFor(x => x.ApplicationType)
+			//    .NotNull().WithMessage("Bu alan gereklidir")
+			//    .NotEmpty().WithMessage("Bu alan gereklidir")
+			//   .WithName("Başvuru Türü");
 
-        }
+		}
     }
 
     /// <summary>
@@ -38,26 +46,28 @@ namespace EVisa.Dtos.CountryDtos
     /// </summary>
     public class CountryUpdateRequestDtos
     {
-        [DisplayName("Ülke Adı *")]
-        public string Name { get; set; } = null!;
+		[DisplayName("Ülke Adı *")]
+		public string Name { get; set; } = null!;
+		[DisplayName("Tür Adı *")]
+		public string Type { get; set; } = null!;
+		[DisplayName("Durum *")]
+		public string Status { get; set; } = null!;
 
-        [DisplayName("Başvuru Türü*")]
-        public string ApplicationType { get; set; } = null!;
-    }
+	}
 
 
-    public class CompanyUpdateRequestValidator : AbstractValidator<CountryUpdateRequestDtos>
+	public class CountryUpdateRequestValidator : AbstractValidator<CountryUpdateRequestDtos>
     {
-        public CompanyUpdateRequestValidator()
+        public CountryUpdateRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Bu alan gereklidir")
                 .NotEmpty().WithMessage("Bu alan gereklidir")
                 .WithName("Ülke Adı");
-            RuleFor(x => x.ApplicationType)
-                .NotNull().WithMessage("Bu alan gereklidir")
-                .NotEmpty().WithMessage("Bu alan gereklidir")
-                .WithName("Başvuru Türü");
+            //RuleFor(x => x.ApplicationType)
+            //    .NotNull().WithMessage("Bu alan gereklidir")
+            //    .NotEmpty().WithMessage("Bu alan gereklidir")
+            //    .WithName("Başvuru Türü");
         }
     }
 }

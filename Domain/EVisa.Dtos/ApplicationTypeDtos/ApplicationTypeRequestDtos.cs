@@ -23,9 +23,9 @@ namespace EVisa.Dtos.ApplicationTypeDtos
         public string Price { get; set; } = null!;
     }
 
-    public class CompanyCreateRequestValidator : AbstractValidator<DestinationCreateRequestDtos>
+    public class CountryCreateRequestValidator : AbstractValidator<DestinationCreateRequestDtos>
     {
-        public CompanyCreateRequestValidator()
+        public CountryCreateRequestValidator()
         {
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Bu alan gereklidir")

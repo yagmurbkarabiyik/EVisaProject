@@ -22,9 +22,9 @@ namespace EVisa.Dal.Data.Common
         }
 
 
-        public void InsertAsync(T entity)
+        public async Task InsertAsync(T entity)
         {
-            _dbSet.Add(entity);
+           await  _dbSet.AddAsync(entity);
         }
 
         public void DeleteAsync(T entity)
@@ -52,5 +52,10 @@ namespace EVisa.Dal.Data.Common
         {
             throw new NotImplementedException();
         }
-    }
+
+		public void SaveChangesAsync()
+		{
+			_dbContext.SaveChanges();
+		}
+	}
 }

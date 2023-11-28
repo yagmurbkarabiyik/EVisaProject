@@ -5,8 +5,7 @@ using EVisa.Dal.Context;
 using EVisa.Dal.Data.Common;
 using EVisa.Dal.Data.DalRepos;
 using EVisa.Dal.Data.IDalRepos;
-using EVisa.Entities.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
