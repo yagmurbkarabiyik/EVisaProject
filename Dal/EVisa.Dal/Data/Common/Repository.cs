@@ -1,11 +1,6 @@
 ﻿using EVisa.Core.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EVisa.Dal.Data.Common
 {
@@ -20,7 +15,6 @@ namespace EVisa.Dal.Data.Common
             _dbContext = dbContext;
             _dbSet = dbContext.Set<T>();
         }
-
 
         public async Task InsertAsync(T entity)
         {
@@ -38,11 +32,15 @@ namespace EVisa.Dal.Data.Common
         }
 
 
-        public void UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
         }
-
+        
+        public async Task Delete(T entity)
+        {
+            _dbSet.Remove(entity);
+        }
         public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking().AsQueryable();

@@ -46,6 +46,8 @@ namespace EVisa.Dtos.CountryDtos
     /// </summary>
     public class CountryUpdateRequestDtos
     {
+		[DisplayName("ID *")]
+		public int Id { get; set; }
 		[DisplayName("Ülke Adı *")]
 		public string Name { get; set; } = null!;
 		[DisplayName("Tür Adı *")]
@@ -55,7 +57,6 @@ namespace EVisa.Dtos.CountryDtos
 
 	}
 
-
 	public class CountryUpdateRequestValidator : AbstractValidator<CountryUpdateRequestDtos>
     {
         public CountryUpdateRequestValidator()
@@ -64,10 +65,18 @@ namespace EVisa.Dtos.CountryDtos
                 .NotNull().WithMessage("Bu alan gereklidir")
                 .NotEmpty().WithMessage("Bu alan gereklidir")
                 .WithName("Ülke Adı");
-            //RuleFor(x => x.ApplicationType)
-            //    .NotNull().WithMessage("Bu alan gereklidir")
-            //    .NotEmpty().WithMessage("Bu alan gereklidir")
-            //    .WithName("Başvuru Türü");
-        }
+			RuleFor(x => x.Type)
+			  .NotNull().WithMessage("Bu alan gereklidir")
+			  .NotEmpty().WithMessage("Bu alan gereklidir")
+			  .WithName("Tür Adı");
+			RuleFor(x => x.Status)
+			  .NotNull().WithMessage("Bu alan gereklidir")
+			  .NotEmpty().WithMessage("Bu alan gereklidir")
+			  .WithName("Durum");
+			//RuleFor(x => x.ApplicationType)
+			//    .NotNull().WithMessage("Bu alan gereklidir")
+			//    .NotEmpty().WithMessage("Bu alan gereklidir")
+			//    .WithName("Başvuru Türü");
+		}
     }
 }

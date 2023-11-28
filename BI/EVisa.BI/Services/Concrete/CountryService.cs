@@ -22,8 +22,8 @@ namespace EVisa.BI.Services.Concrete
             {
                 Name = model.Name,
                 Type = model.Type,
-                StatusAsString= model.Status
-  			};
+                StatusAsString = model.Status
+            };
 
             await _countryRepository.InsertAsync(country);
 
@@ -40,11 +40,17 @@ namespace EVisa.BI.Services.Concrete
             return mappedData;
         }
 
-        public async Task<CountryUpdateResponseDto> Update(CountryUpdateRequestDtos model)
+        public async Task<CountryUpdateResponseDto> UpdateAsync(CountryUpdateRequestDtos model)
         {
-            var datas = await _countryRepository.UpdateAsync(model);
-        }
-    }
-}
+            var existingCountry = await _countryRepository.GetAll().FirstOrDefaultAsync(c => c.Id == model.Id) ;
 
-//todo application type hata veriyor, create için responsedan application silinince 200 dönüyor ama swaggerda da country name null dönüyor, dbye gelmiyor
+			existingCountry.Name = model.Name;
+			existingCountry.Type = model.Type;
+			existingCountry.StatusAsString = model.Status;
+
+			var result = _countryRepository.UpdateAsync(existingCountry);
+			var mappedData = existingCountry.Adapt<CountryUpdateResponseDto>();
+            return mappedData;
+		}
+	}
+}

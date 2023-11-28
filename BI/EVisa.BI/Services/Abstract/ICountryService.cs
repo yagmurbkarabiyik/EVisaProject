@@ -11,7 +11,7 @@ namespace EVisa.BI.Services.Abstract
     public interface ICountryService
     {
         Task<CountryCreateResponseDto> Create(CountryCreateRequestDtos model);
-        Task<CountryUpdateResponseDto> Update(CountryUpdateRequestDtos model);
+        Task<CountryUpdateResponseDto> UpdateAsync(CountryUpdateRequestDtos model);        
         Task<List<CountryGetResponseDto>> GetAll();
     }
 }

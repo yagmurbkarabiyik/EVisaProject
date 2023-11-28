@@ -38,13 +38,16 @@ namespace EVisa.Api.Controllers
             return Ok(model);
 
 		}
+
         [HttpPut]
-        public async Task<IActionResult> Update(CountryUpdateRequestDtos model) 
+        public async Task<IActionResult> UpdateAsync(CountryUpdateRequestDtos model) 
         {
-            var updatedCountry = await _countryService.Update(model);
+            var updatedCountry = await _countryService.UpdateAsync(model);
             _coutryRepository.SaveChangesAsync();
             return Ok(model);
         }
+
+     
 
     }
 }
