@@ -16,11 +16,5 @@ namespace EVisa.Dal.Data.DalRepos
         public DestinationRepository(EVisaDbContext dbContext) : base(dbContext)
         {
         }
-
-        //??
-        public IQueryable<Destination> Get()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

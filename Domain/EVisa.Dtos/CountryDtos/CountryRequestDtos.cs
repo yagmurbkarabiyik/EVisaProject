@@ -4,7 +4,11 @@ using System.ComponentModel;
 
 namespace EVisa.Dtos.CountryDtos
 {
-    public class CountryCreateRequestDtos
+
+	/// <summary>
+	/// create country request
+	/// </summary>
+	public class CountryCreateRequestDtos
     {
         [DisplayName("Ülke Adı *")]
         public string Name { get; set; } = null!;

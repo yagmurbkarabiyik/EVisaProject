@@ -54,7 +54,7 @@ namespace EVisa.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusAsString")
@@ -125,13 +125,13 @@ namespace EVisa.Dal.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("ForeignCountryId")
+                    b.Property<int?>("ForeignCountryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeCountryId")
+                    b.Property<int?>("HomeCountryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusAsString")
@@ -163,9 +163,7 @@ namespace EVisa.Dal.Migrations
                 {
                     b.HasOne("EVisa.Entities.Models.Country", "Country")
                         .WithMany("Destinations")
-                        .HasForeignKey("HomeCountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HomeCountryId");
 
                     b.Navigation("Country");
                 });

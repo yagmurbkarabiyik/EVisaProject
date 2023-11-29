@@ -13,28 +13,39 @@ namespace EVisa.Dtos.DestinationDtos
     /// </summary>
     public class DestinationCreateRequestDtos
     {
-        [DisplayName("Bölge Adı *")]
-        public string Name { get; set; } = null!;
+		[DisplayName("Açıklama *")]
+		public string Description { get; set; } = null!;
+		[DisplayName("Yabancı Ülke ID *")]
+		//public int ForeignCountryId { get; set; }
+		//[DisplayName("Home Ülke ID *")]
+		//public int HomeCountryId { get; set; }
+		//[DisplayName("Status *")]
+		public string Status { get; set; } = null!;
 
-        [DisplayName("Ülke Adı *")]
-        public string CountryId { get; set; } = null!;
-    }
+	}
 
-    public class CountryCreateRequestValidator : AbstractValidator<DestinationCreateRequestDtos>
+    public class DestinationCreateRequestValidator : AbstractValidator<DestinationCreateRequestDtos>
     {
-        public CountryCreateRequestValidator()
+        public DestinationCreateRequestValidator()
         {
-            RuleFor(x => x.Name)
-                .NotNull().WithMessage("Bu alan gereklidir")
-                .NotEmpty().WithMessage("Bu alan gereklidir")
-                .WithName("Bölge Adı");
+			RuleFor(x => x.Description)
+			  .NotNull().WithMessage("Bu alan gereklidir")
+			  .NotEmpty().WithMessage("Bu alan gereklidir")
+			  .WithName("Açıklama");
+			//RuleFor(x => x.ForeignCountryId)
+			//  .NotNull().WithMessage("Bu alan gereklidir")
+			//  .NotEmpty().WithMessage("Bu alan gereklidir")
+			//  .WithName("Yabancı Ülke ID");
+			//RuleFor(x => x.HomeCountryId)
+			//  .NotNull().WithMessage("Bu alan gereklidir")
+			//  .NotEmpty().WithMessage("Bu alan gereklidir")
+			//  .WithName("Home Ülke ID");
+			RuleFor(x => x.Status)
+			  .NotNull().WithMessage("Bu alan gereklidir")
+			  .NotEmpty().WithMessage("Bu alan gereklidir")
+			  .WithName("Status");
 
-            RuleFor(x => x.CountryId)
-                .NotNull().WithMessage("Bu alan gereklidir")
-                .NotEmpty().WithMessage("Bu alan gereklidir")
-                .WithName("Ülke Adı");
-
-        }
+		}
     }
 
     /// <summary>
@@ -42,27 +53,46 @@ namespace EVisa.Dtos.DestinationDtos
     /// </summary>
     public class DestinationUpdateRequestDtos
     {
-        [DisplayName("Bölge Adı *")]
-        public string Name { get; set; } = null!;
+		[DisplayName("ID")]
+		public int Id { get; set; }
+		[DisplayName("Açıklama *")]
+		public string Description { get; set; } = null!;
+	}
 
-        [DisplayName("Ülke Adı *")]
-        public string CountryId { get; set; } = null!;
-    }
-
-    public class CountryUpdateRequestValidator : AbstractValidator<DestinationUpdateRequestDtos>
+    public class DestinationUpdateRequestValidator : AbstractValidator<DestinationUpdateRequestDtos>
     {
-        public CountryUpdateRequestValidator()
+        public DestinationUpdateRequestValidator()
         {
-            RuleFor(x => x.Name)
-                .NotNull().WithMessage("Bu alan gereklidir")
-                .NotEmpty().WithMessage("Bu alan gereklidir")
-                .WithName("Bölge Adı");
-
-
-            RuleFor(x => x.CountryId)
-                .NotNull().WithMessage("Bu alan gereklidir")
-                .NotEmpty().WithMessage("Bu alan gereklidir")
-                .WithName("Ülke Adı");
-        }
+			RuleFor(x => x.Id)
+				.NotNull().WithMessage("Bu alan gereklidir")
+				.NotEmpty().WithMessage("Bu alan gereklidir")
+				.WithName("Açıklama");
+			RuleFor(x => x.Description)
+				.NotNull().WithMessage("Bu alan gereklidir")
+				.NotEmpty().WithMessage("Bu alan gereklidir")
+				.WithName("Açıklama");
+		}
     }
+
+	/// <summary>
+	/// delete destination 
+	/// </summary>
+	public class DestinationDeleteRequestDtos
+	{
+		[DisplayName("ID *")]
+		public int Id { get; set; } 
+
+	}
+
+	public class DestinationDeleteRequestValidator : AbstractValidator<DestinationDeleteRequestDtos>
+	{
+		public DestinationDeleteRequestValidator()
+		{
+			RuleFor(x => x.Id).NotNull()
+				.WithMessage("Bu alan gereklidir")
+				.NotEmpty().WithMessage("Bu alan gereklidir")
+				.WithName("ID");
+		}
+	}
+
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EVisa.Dal.Migrations
 {
     [DbContext(typeof(EVisaDbContext))]
-    [Migration("20231128112949_mig_2")]
-    partial class mig2
+    [Migration("20231129185349_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,19 +39,25 @@ namespace EVisa.Dal.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DurationOfStay")
+                    b.Property<int?>("DurationOfStay")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("EntryType")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProcessingTime")
+                    b.Property<int?>("ProcessingTime")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusAsString")
@@ -122,13 +128,13 @@ namespace EVisa.Dal.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("ForeignCountryId")
+                    b.Property<int?>("ForeignCountryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeCountryId")
+                    b.Property<int?>("HomeCountryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusAsString")
@@ -160,9 +166,7 @@ namespace EVisa.Dal.Migrations
                 {
                     b.HasOne("EVisa.Entities.Models.Country", "Country")
                         .WithMany("Destinations")
-                        .HasForeignKey("HomeCountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HomeCountryId");
 
                     b.Navigation("Country");
                 });

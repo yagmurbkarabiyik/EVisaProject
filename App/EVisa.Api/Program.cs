@@ -30,6 +30,9 @@ builder.Services.AddScoped<ICountryService, CountryService>();
 builder.Services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
 builder.Services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
 
+builder.Services.AddScoped<IDestinationService, DestinationService>();
+builder.Services.AddScoped<IDestinationRepository, DestinationRepository>();
+
 builder.Services.AddAutoMapper(x => { });
 
 var app = builder.Build();
