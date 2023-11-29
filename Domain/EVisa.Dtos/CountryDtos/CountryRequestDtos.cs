@@ -79,4 +79,25 @@ namespace EVisa.Dtos.CountryDtos
 			//    .WithName("Başvuru Türü");
 		}
     }
+
+	/// <summary>
+	/// delete country request
+	/// </summary>
+	public class CountryDeleteRequestDtos
+	{
+		[DisplayName("ID *")]
+		public int Id { get; set; }
+	}
+
+	public class CountryDeleteRequestValidator : AbstractValidator<CountryDeleteRequestDtos>
+	{
+		public CountryDeleteRequestValidator()
+		{
+			RuleFor(x => x.Id)
+				.NotNull().WithMessage("Bu alan gereklidir")
+				.NotEmpty().WithMessage("Bu alan gereklidir")
+				.WithName("ID");
+		
+		}
+	}
 }

@@ -12,6 +12,7 @@ namespace EVisa.BI.Services.Abstract
     {
         Task<CountryCreateResponseDto> Create(CountryCreateRequestDtos model);
         Task<CountryUpdateResponseDto> UpdateAsync(CountryUpdateRequestDtos model);        
+        Task<CountryDeleteResponseDto> DeleteAsync(CountryDeleteRequestDtos model);        
         Task<List<CountryGetResponseDto>> GetAll();
     }
 }

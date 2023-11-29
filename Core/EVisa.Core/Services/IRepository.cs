@@ -10,6 +10,7 @@ namespace EVisa.Core.Services
     {
         Task InsertAsync(T entity);
         Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
         IQueryable<T> GetAll();
         void SaveChangesAsync();
     }

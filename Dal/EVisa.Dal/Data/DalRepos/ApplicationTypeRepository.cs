@@ -17,9 +17,5 @@ namespace EVisa.Dal.Data.DalRepos
         {
         }
 
-        public IQueryable<ApplicationType> Get()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

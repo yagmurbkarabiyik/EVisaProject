@@ -27,6 +27,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICountryService, CountryService>();
 
+builder.Services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
+builder.Services.AddScoped<IApplicationTypeService, ApplicationTypeService>();
+
 builder.Services.AddAutoMapper(x => { });
 
 var app = builder.Build();

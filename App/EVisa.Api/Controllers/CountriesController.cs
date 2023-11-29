@@ -12,12 +12,12 @@ namespace EVisa.Api.Controllers
     public class CountriesController : ControllerBase
     {
         private readonly ICountryService _countryService;
-        private readonly ICountryRepository _coutryRepository;
+        private readonly ICountryRepository _countryRepository;
 
 		public CountriesController(ICountryService countryService, ICountryRepository coutryRepository)
 		{
 			_countryService = countryService;
-			_coutryRepository = coutryRepository;
+			_countryRepository = coutryRepository;
 		}
 
 		[HttpGet]
@@ -33,7 +33,7 @@ namespace EVisa.Api.Controllers
 		{
 			var createdCountry = await _countryService.Create(model);
 
-           _coutryRepository.SaveChangesAsync();
+			_countryRepository.SaveChangesAsync();
 
             return Ok(model);
 
@@ -43,11 +43,20 @@ namespace EVisa.Api.Controllers
         public async Task<IActionResult> UpdateAsync(CountryUpdateRequestDtos model) 
         {
             var updatedCountry = await _countryService.UpdateAsync(model);
-            _coutryRepository.SaveChangesAsync();
+			_countryRepository.SaveChangesAsync();
             return Ok(model);
         }
 
-     
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = _countryRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            await _countryRepository.DeleteAsync(result);
+            _countryRepository.SaveChangesAsync();  
+
+			return Ok(result);
+		}
 
     }
 }

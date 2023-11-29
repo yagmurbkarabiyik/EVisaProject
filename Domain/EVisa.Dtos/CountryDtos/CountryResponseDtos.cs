@@ -10,6 +10,7 @@ namespace EVisa.Dtos.CountryDtos
     {
         public record CountryCreateResponseDto(int Id, string Name, string Type, string Status, string ApplicationType);
         public record CountryUpdateResponseDto(int Id, string Name, string Type, string Status);
+        public record CountryDeleteResponseDto(int Id);
         public record CountryGetResponseDto(int Id, string Name, string Type, string Status, string ApplicationType);
     }
 }

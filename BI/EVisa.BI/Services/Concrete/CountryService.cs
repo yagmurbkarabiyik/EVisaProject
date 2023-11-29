@@ -32,17 +32,9 @@ namespace EVisa.BI.Services.Concrete
 
         }
 
-        public async Task<List<CountryGetResponseDto>> GetAll()
-        {
-            var datas = await _countryRepository.GetAll().ToListAsync();
-            var mappedData = datas.Adapt<List<CountryGetResponseDto>>();
-
-            return mappedData;
-        }
-
-        public async Task<CountryUpdateResponseDto> UpdateAsync(CountryUpdateRequestDtos model)
-        {
-            var existingCountry = await _countryRepository.GetAll().FirstOrDefaultAsync(c => c.Id == model.Id) ;
+		public async Task<CountryUpdateResponseDto> UpdateAsync(CountryUpdateRequestDtos model)
+		{
+			var existingCountry = await _countryRepository.GetAll().FirstOrDefaultAsync(c => c.Id == model.Id);
 
 			existingCountry.Name = model.Name;
 			existingCountry.Type = model.Type;
@@ -50,7 +42,31 @@ namespace EVisa.BI.Services.Concrete
 
 			var result = _countryRepository.UpdateAsync(existingCountry);
 			var mappedData = existingCountry.Adapt<CountryUpdateResponseDto>();
-            return mappedData;
+			return mappedData;
 		}
+
+		public async Task<List<CountryGetResponseDto>> GetAll()
+		{
+			var datas = await _countryRepository.GetAll().ToListAsync();
+			var mappedData = datas.Adapt<List<CountryGetResponseDto>>();
+
+			return mappedData;
+		}
+
+		public async Task<CountryDeleteResponseDto> DeleteAsync(CountryDeleteRequestDtos model)
+		{
+			var existingCountry = await _countryRepository.GetAll().FirstOrDefaultAsync(c => c.Id == model.Id);
+			if (existingCountry != null)
+			{
+				throw new Exception($"Ülke Id'si {model.Id} bulunamadı.");
+			}
+
+			await _countryRepository.DeleteAsync(existingCountry);
+			_countryRepository.SaveChangesAsync();
+
+			return new CountryDeleteResponseDto(existingCountry.Id);
+
+		}
+
 	}
 }

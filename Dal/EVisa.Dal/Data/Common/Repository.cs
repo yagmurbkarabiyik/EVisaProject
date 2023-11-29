@@ -19,9 +19,10 @@ namespace EVisa.Dal.Data.Common
         public async Task InsertAsync(T entity)
         {
            await  _dbSet.AddAsync(entity);
+            
         }
 
-        public void DeleteAsync(T entity)
+        public async Task DeleteAsync(T entity)
         {
             _dbSet.Remove(entity);
         }
@@ -37,10 +38,6 @@ namespace EVisa.Dal.Data.Common
             _dbSet.Update(entity);
         }
         
-        public async Task Delete(T entity)
-        {
-            _dbSet.Remove(entity);
-        }
         public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking().AsQueryable();
